@@ -1,23 +1,15 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
+stage('Build') {
+    steps {
+        dir('GitBranchProject') {
+            bat 'javac Main.java MainTest.java'
         }
+    }
+}
 
-        stage('Build') {
-            steps {
-                bat 'javac Main.java MainTest.java'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                bat 'java MainTest'
-            }
+stage('Test') {
+    steps {
+        dir('GitBranchProject') {
+            bat 'java MainTest'
         }
     }
 }
