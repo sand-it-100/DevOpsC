@@ -1,0 +1,19 @@
+
+services:
+  task-manager:
+    build: .
+    container_name: student-task-manager
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      DB_PATH: /data/tasks.db
+
+    volumes:
+      - task-data:/data
+
+    restart: unless-stopped
+
+volumes:
+  task-data:
